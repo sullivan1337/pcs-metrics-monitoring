@@ -8,3 +8,12 @@ datasources:
   isDefault: true
   version: 1
   editable: true
+
+- name: InfluxDB
+  type: influxdb
+  access: proxy
+  url: http://influxdb:8086
+  isDefault: false
+  version: 1
+  editable: true
+  database: prismacloud

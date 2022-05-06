@@ -5,6 +5,32 @@ volumes:
   prometheus-storage:
 
 services:
+  influxdb:
+      image: influxdb:1.8
+      container_name: influxdb
+      volumes:
+          - type: bind
+            source: ./influxdb/influxdb.conf
+            target: /etc/influxdb/influxdb.conf
+            read_only: true
+          - type: bind
+            source: ./influxdb
+            target: /var/lib/influxdb
+      ports:
+          - "8086:8086"
+
+  telegraf:
+      image: telegraf:latest
+      container_name: telegraf
+      restart: always
+      volumes:
+          - type: bind
+            source: ./telegraf/telegraf.conf
+            target: /etc/telegraf/telegraf.conf
+            read_only: true
+      depends_on:
+          - influxdb
+
   grafana:
     image: grafana/grafana
     ports:
@@ -24,4 +50,5 @@ services:
     container_name: prometheus
     volumes:
       - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
+#      - './prometheus/pc_auth.env:/etc/prometheus/prometheus.yml'
       - 'prometheus-storage:/prometheus'
