@@ -52,3 +52,8 @@ services:
       - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
 #      - './prometheus/pc_auth.env:/etc/prometheus/prometheus.yml'
       - 'prometheus-storage:/prometheus'
+
+  pcc_collector:
+    image: collector:dev
+    container_name: pcc_collector
+    hostname: pcc_collector
