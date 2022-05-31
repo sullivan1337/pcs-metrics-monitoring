@@ -30,7 +30,7 @@ fi
 
 TL_SECRETKEY_MATCH='^(\w|\d|\/|\+){27}\=$'
 TL_ACCESSKEY_MATCH='^(\d|\w){8}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){12}$'
-TL_CONSOLE_MATCH='^https\:\/\/(\w|\d|\.|\-|\_|\:)+$'
+TL_CONSOLE_MATCH='^https\:\/\/(\w|\d|\.|\-|\_|\:|\/)+$'
 
 
 tl-var-check () {
