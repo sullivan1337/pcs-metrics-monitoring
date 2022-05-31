@@ -28,6 +28,31 @@ if ! docker-compose version > /dev/null 2>&1; then
 fi
 
 
+TL_SECRETKEY_MATCH='^(\w|\d|\/|\+){27}\=$'
+TL_ACCESSKEY_MATCH='^(\d|\w){8}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){12}$'
+TL_CONSOLE_MATCH='^https\:\/\/(\w|\d|\.|\-|\_|\:)+$'
+
+
+tl-var-check () {
+if [[ ! $TL_CONSOLE =~ $TL_CONSOLE_MATCH ]]
+  then
+    echo "$TL_CONSOLE is not a valid value for TL_CONSOLE. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+    exit 1
+fi
+
+if [[ ! $TL_SECRETKEY =~ $TL_SECRETKEY_MATCH ]]
+  then
+     echo "PC_SECRETKEY is not assigned to a valid value. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+     exit 1
+fi
+
+if [[ ! $TL_ACCESSKEY =~ $TL_ACCESSKEY_MATCH ]]
+  then
+     echo "PC_ACCESSKEY is not assigned to a valid value. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+     exit 1
+fi
+}
+
 
 
 
@@ -39,6 +64,8 @@ echo "enter your prisma secret key id:"
 read -r -s  TL_SECRETKEY
 echo "enter your prisma cloud api url, like https://us-east1.cloud.twistlock.com/us-1-1111111"
 read -r TL_CONSOLE
+
+tl-var-check
 
 printf '%s\n' "#!/bin/sh" > $ENV_FILE_PATH
 printf '%s\n' "TL_CONSOLE=\"$TL_CONSOLE\"" >> $ENV_FILE_PATH
