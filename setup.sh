@@ -36,19 +36,19 @@ TL_CONSOLE_MATCH='^https\:\/\/(\w|\d|\.|\-|\_|\:)+$'
 tl-var-check () {
 if [[ ! $TL_CONSOLE =~ $TL_CONSOLE_MATCH ]]
   then
-    echo "$TL_CONSOLE is not a valid value for TL_CONSOLE. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+    echo "$TL_CONSOLE is not a valid value for TL_CONSOLE. Please recopy, verify, and run again"
     exit 1
 fi
 
 if [[ ! $TL_SECRETKEY =~ $TL_SECRETKEY_MATCH ]]
   then
-     echo "PC_SECRETKEY is not assigned to a valid value. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+     echo "The Secret key is not valid. Please recopy, verify, and run again"
      exit 1
 fi
 
 if [[ ! $TL_ACCESSKEY =~ $TL_ACCESSKEY_MATCH ]]
   then
-     echo "PC_ACCESSKEY is not assigned to a valid value. Please recopy and reassign the variable in the ./secrets/secrets file and run again"
+     echo "The Access Key is not valid. Please recopy, verify, and run again"
      exit 1
 fi
 }
