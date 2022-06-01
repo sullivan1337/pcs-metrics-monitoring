@@ -17,8 +17,8 @@ services:
             source: ./influxdb
             target: /var/lib/influxdb
           - type: bind
-            source: ./influxdb/influx.sql
-            target: /var/lib/influxdb/influx.sql
+            source: ./influxdb/influxdb.sql
+            target: /var/lib/influxdb/influxdb.sql
           
       ports:
           - "8086:8086"
