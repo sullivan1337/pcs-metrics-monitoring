@@ -119,8 +119,8 @@ docker exec -it influxdb influx -import -path=/var/lib/influxdb/influxdb.sql
 sleep 2
 
 printf '%s\n%s\n%s\n%s\n%s\n\n\n%s' "all done!" \
-                              "prometheus should be available on localhost:9090" \
-                              "grafana on localhost:3000" \
-                              "default username for grafana is: admin" \
-                              "default password for grafana is: admin" \
-                              "prisma api collector data can be viewed in grafana by hitting the explore icon. Select Influxdb FROM raw prismacompute. Ideas, use the imagerepo as the filter, select the sum of any of the metrics collected." 
+                                    "prometheus should be available on localhost:9090" \
+                                    "grafana on localhost:3000" \
+                                    "default username for grafana is: admin" \
+                                    "default password for grafana is: admin" \
+                                    "prisma api collector data can be viewed in grafana by hitting the explore icon. Select Influxdb FROM raw prismacompute. Ideas, use the imagerepo as the filter, select the sum of any of the metrics collected." 
