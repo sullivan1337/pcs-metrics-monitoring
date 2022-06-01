@@ -104,7 +104,8 @@ if [ -z "$TL_JWT" ]
         printf '\n%s\n' "Prisma compute api token not retrieved, have you verified the expiration date of the access key and secret key? Have you verified connectivity to the url provided: $TL_CONSOLE? Troubleshoot and then you'll need to run this script again"
         exit 1
     else
-       printf '\n%s\n%s\n' "Token retireived" "parameters provided are valid"
+       printf '\n%s\n%s\n' "Token retrieved" \
+                           "parameters provided are valid"
 fi
 
 
@@ -128,9 +129,9 @@ printf '%s\n' "-----------------------------------------"
 # create the secret file for the collector
 printf '%s\n' "Configuring env file"
 printf '%s\n%s\n%s\n%s\n' "#!/bin/sh" \
-       "TL_CONSOLE=\"$TL_CONSOLE\"" \
-       "TL_ACCESSKEY=\"$TL_ACCESSKEY\"" \
-       "TL_SECRETKEY=\"$TL_SECRETKEY\"" > $ENV_FILE_PATH
+                          "TL_CONSOLE=\"$TL_CONSOLE\"" \
+                          "TL_ACCESSKEY=\"$TL_ACCESSKEY\"" \
+                          "TL_SECRETKEY=\"$TL_SECRETKEY\"" > $ENV_FILE_PATH
 
 # build collector container
 printf '%s\n%s\n' "-----------------------------------------" \
