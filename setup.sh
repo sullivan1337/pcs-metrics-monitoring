@@ -96,28 +96,31 @@ printf '%s\n%s\n' "-----------------------------------------" \
 
 docker build -t collector:dev ./collector/.
 
-printf '%s\n' "-----------------------------------------" 
-
-# Build Docker
-echo "Running Docker-Compose..."
+printf '%s\n%s\n' "-----------------------------------------" \
+       "Running Docker-Compose..."
 docker-compose -f docker-compose.yml up -d
-echo "-----------------------------------------"
+printf '%s\n' "-----------------------------------------"
 
 
 # Set up Influx
-echo "Waiting for InfluxDB to start..."
+printf '%s\n' "Waiting for InfluxDB to start..."
 until running http://localhost:8086/ping 204 2>/dev/null; do
     printf '.'
     sleep 5
 done
-echo " up!"
+printf '%s\n' " up!"
 sleep 2
 
 
 
-echo "Setup InfluxDB Data for Prisma Cloud Compute Image Vulnerability"
+printf '%s\n' "Setup InfluxDB Data for Prisma Cloud Compute Image Vulnerability"
 docker exec -it influxdb influx -import -path=/var/lib/influxdb/influxdb.sql
 
 sleep 2
 
-echo "all done!"
+printf '%s\n%s\n%s\n%s\n%s\n\n\n%s' "all done!" \
+                              "prometheus should be available on localhost:9090" \
+                              "grafana on localhost:3000" \
+                              "default username for grafana is: admin" \
+                              "default password for grafana is: admin" \
+                              "prisma api collector data can be viewed in grafana by hitting the explore icon. Select Influxdb FROM raw prismacompute. Ideas, use the imagerepo as the filter, select the sum of any of the metrics collected." 
