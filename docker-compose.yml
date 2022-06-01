@@ -14,8 +14,12 @@ services:
             target: /etc/influxdb/influxdb.conf
             read_only: true
           - type: bind
-            source: ./influxdb/
+            source: ./influxdb
             target: /var/lib/influxdb
+          - type: bind
+            source: ./influxdb/influx.sql
+            target: /var/lib/influxdb/influx.sql
+          
       ports:
           - "8086:8086"
 
