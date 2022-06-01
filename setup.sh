@@ -78,7 +78,7 @@ TL_REGION=$(printf '%s' "$TL_CONSOLE" | awk -F '\/' '{print $4}')
 printf '%s\n' "Configuring prometheus.yml file"
 
 sed -i "s|prisma_cloud_compute_domain|$TL_DOMAIN|g" "./prometheus/prometheus.yml"
-sed -i "s|prisma_cloud_compute_region|$TL_REGION|g" "./prometheus/prometheus.yml"
+sed -i "s|prisma_cloud_compute_region|$TL_REGION\/api\/v1\/metrics|g" "./prometheus/prometheus.yml"
 sed -i "s|PC_ACCESS_KEY|$TL_ACCESSKEY|g" "./prometheus/prometheus.yml"
 sed -i "s|PC_SECRET_KEY|$TL_SECRETKEY|g" "./prometheus/prometheus.yml"
 
