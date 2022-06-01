@@ -50,7 +50,7 @@ services:
     container_name: prometheus
     volumes:
       - './prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
-#      - './prometheus/pc_auth.env:/etc/prometheus/prometheus.yml'
+      - './prometheus/pc_auth.env:/etc/prometheus/prometheus.yml'
       - 'prometheus-storage:/prometheus'
 
   pcc_collector:
