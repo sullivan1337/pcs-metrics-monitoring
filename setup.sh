@@ -22,7 +22,7 @@ fi
 
 if ! command -v curl -V > /dev/null 2>&1; then
       printf '\n%s\n%s\n' "ERROR: curl is not available." \
-                          "These scripts require jq, please install and try again."
+                          "These scripts require curl, please install and try again."
       exit 1
 fi
 
@@ -164,7 +164,7 @@ docker exec -it influxdb influx -import -path=/var/lib/influxdb/influxdb.sql
 sleep 2
 
 # wrap up
-printf '%s\n%s\n%s\n%s\n%s\n\n\n%s' "all done!" \
+printf '\n\n\n\n%s\n%s\n%s\n%s\n%s\n\n\n%s' "all done!" \
                                     "prometheus should be available on localhost:9090" \
                                     "grafana on localhost:3000" \
                                     "default username for grafana is: admin" \
