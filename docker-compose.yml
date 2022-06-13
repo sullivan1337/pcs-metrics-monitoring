@@ -44,6 +44,7 @@ services:
       - './grafana/provisioning:/etc/grafana/provisioning'
       - './grafana/dashboards:/var/lib/grafana/dashboards'
       - './grafana-storage:/var/lib/grafana'
+    user: '472'
     environment:
       GF_INSTALL_PLUGINS: "grafana-piechart-panel, natel-plotly-panel, blackmirror1-singlestat-math-panel, btplc-trend-box-panel, marcuscalidus-svg-panel, michaeldmoore-multistat-panel, yesoreyeram-boomtable-panel, ryantxu-ajax-panel, grafana-influxdb-flux-datasource, fetzerch-sunandmoon-datasource, andig-darksky-datasource, simpod-json-datasource"
 
