@@ -45,23 +45,31 @@ TL_ACCESSKEY_MATCH='^(\d|\w){8}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){4}\-(\d|\w){12}
 TL_CONSOLE_MATCH='^https\:\/\/(\w|\d|\.|\-|\_|\:|\/)+$'
 
 # used to validate user input
+# function to check variables required to access the compute api endpoints
 tl-var-check () {
 if [[ ! $TL_CONSOLE =~ $TL_CONSOLE_MATCH ]]
   then
-    printf '%s\n' "$TL_CONSOLE is not a valid value for TL_CONSOLE. Please recopy, verify, and run again"
+     printf '\n%s' "Prisma Compute api url does not meet the regex validation check in the ./secrets/secrets file. Would you like to continue?"
+     read -r CONTINUE
+     if [ "$CONTINUE" != "${CONTINUE#[Yy]}" ]
+       then
+         printf '\n%s' "running script..."
+     else
+        printf '\n%s' "try running the setup.sh script"
+        exit 1
+     fi
+fi
+
+if [ -z "$TL_USER" ]
+  then
+    echo "TL_USER variable is unassigned. Run the setup.sh script or fix the variable assignment in the secrets directory"
     exit 1
 fi
 
-if [[ ! $TL_SECRETKEY =~ $TL_SECRETKEY_MATCH ]]
+if [ -z "$TL_PASSWORD" ]
   then
-     printf '%s\n' "The Secret key is not valid. Please recopy, verify, and run again"
-     exit 1
-fi
-
-if [[ ! $TL_ACCESSKEY =~ $TL_ACCESSKEY_MATCH ]]
-  then
-     printf '%s\n' "The Access Key is not valid. Please recopy, verify, and run again"
-     exit 1
+    echo "TL_PASSWORD variable is unassigned. Run the setup.sh script or fix the variable assignment in the secrets directory"
+    exit 1
 fi
 }
 
